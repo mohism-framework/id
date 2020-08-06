@@ -1,0 +1,37 @@
+{
+  "name": "@mohism/id",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha --recursive -r ts-node/register test/**/*.spec.ts",
+    "build": "npx tsc",
+    "cover": "npx nyc npm test",
+    "lint": "npx eslint src/**/*.ts --cache --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint & npm test"
+    }
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.24",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "chai": "^4.2.0",
+    "eslint": "^7.5.0",
+    "husky": "^4.2.5",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@mohism/utils": "^1.1.3",
+    "dotenv": "^8.2.0"
+  }
+}
