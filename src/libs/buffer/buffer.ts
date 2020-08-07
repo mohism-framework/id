@@ -33,7 +33,6 @@ export abstract class AbstractBuffer implements IBuffer {
           this.storages[name] = new Snowflake({ name });
           break;
       }
-      return -1n;
     }
     return await this.storages[name].getId();
   }

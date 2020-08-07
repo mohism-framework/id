@@ -8,6 +8,7 @@
     "**/*.ts"
   ],
   "exclude": [
+    "src/server.ts",
     "coverage/**",
     "node_modules/**",
     "**/*.d.ts",
