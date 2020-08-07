@@ -23,10 +23,12 @@ export default class Segment implements IStore {
   }
 
   async getId(): Promise<bigint> {
-    // 当前号段使用完毕时，后背号段上场，并申请后背号段
+    // 当前号段使用完毕时，后背号段上场，并申请后备号段
     if (this.current > this.max) {
       [this.current, this.max] = this.next;
-      this.next = await this.driver.offer(this.name);
+      process.nextTick(async () => {
+        this.next = await this.driver.offer(this.name);
+      });
     }
     return BigInt(this.current++);
   }

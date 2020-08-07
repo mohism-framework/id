@@ -2,7 +2,6 @@ import { Dict } from '@mohism/utils';
 
 import { AbstractDriver, IdRange } from './type';
 
-
 export default class MemoryDriver extends AbstractDriver {
   private pool: Dict<bigint> = {};
   

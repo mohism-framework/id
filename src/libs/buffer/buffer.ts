@@ -2,6 +2,8 @@ import { Dict } from '@mohism/utils';
 
 import { IStore, DriverType } from '../driver/type';
 import { IBufferOptions, Strategy } from './type';
+import Segment from '../store/segment';
+import Snowflake from '../store/slowflake';
 
 export interface IBuffer {
   get(name: string): Promise<bigint>;
@@ -22,9 +24,17 @@ export abstract class AbstractBuffer implements IBuffer {
   }
 
   async get(name: string): Promise<bigint> {
-    if (this.storages[name]) {
-      return await this.storages[name].getId();
+    if (!this.storages[name]) {
+      switch (this.strategy) {
+        case Strategy.segment:
+          this.storages[name] = new Segment({ name, driver: this.driver });
+          break;
+        case Strategy.snowflake:
+          this.storages[name] = new Snowflake({ name });
+          break;
+      }
+      return -1n;
     }
-    return -1n;
+    return await this.storages[name].getId();
   }
 }

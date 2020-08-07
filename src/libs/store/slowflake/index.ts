@@ -1,4 +1,4 @@
-import { IStore } from "../../driver/type";
+import { IStore } from '../../driver/type';
 import { ISnowflakeOption } from '../type';
 import { Strategy } from '../../buffer/type';
 

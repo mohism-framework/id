@@ -4,5 +4,5 @@ import { createServer } from 'http';
 config();
 /* istanbul ignore next */
 createServer((req, res) => {
-  let [, name] = (req.url || '/default').split('/');
+  const [, name] = (req.url || '/default').split('/');
 }).listen(process.env.PORT || 3000);

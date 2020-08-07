@@ -13,7 +13,7 @@ export default class FileDriver extends AbstractDriver {
     super();
     /* istanbul ignore next */
     if (!existsSync(this.dir)) {
-      throw new Error(`Path Not Exists: process.env.FILE_PATH = ${process.env.FILE_PATH}`)
+      throw new Error(`Path Not Exists: process.env.FILE_PATH = ${process.env.FILE_PATH}`);
     }
     try {
       /* istanbul ignore next */
@@ -22,7 +22,7 @@ export default class FileDriver extends AbstractDriver {
       });
     } catch (error) {
       /* istanbul ignore next */
-      throw new Error(`Read File Error: ${error.message}`)
+      throw new Error(`Read File Error: ${error.message}`);
     }
   }
 
@@ -34,7 +34,7 @@ export default class FileDriver extends AbstractDriver {
     [from, to] = [this.pool[name] + 1n, this.pool[name] + this.step];
     this.pool[name] = to;
     process.nextTick(() => {
-      writeFileSync(join(this.dir, name), `${to}`)
+      writeFileSync(join(this.dir, name), `${to}`);
     });
     return [from, to];
   }
