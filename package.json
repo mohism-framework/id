@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npx ts-node src/server.ts",
     "test": "npx mocha --recursive -r ts-node/register test/**/*.spec.ts",
     "build": "npx tsc",
     "cover": "npx nyc npm test",
