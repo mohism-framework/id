@@ -23,15 +23,17 @@ export abstract class AbstractBuffer implements IBuffer {
     this.storages = {};
   }
 
-  async get(name: string): Promise<bigint> {
+  async get(name: string = 'default'): Promise<bigint> {
     if (!this.storages[name]) {
       switch (this.strategy) {
-        case Strategy.segment:
-          this.storages[name] = new Segment({ name, driver: this.driver });
-          break;
-        case Strategy.snowflake:
-          this.storages[name] = new Snowflake({ name });
-          break;
+      case Strategy.segment:
+        this.storages[name] = new Segment({ name, driver: this.driver });
+        break;
+      case Strategy.snowflake:
+        this.storages[name] = new Snowflake({ name });
+        break;
+      default:
+        throw new Error('Unknown strategy');
       }
     }
     return await this.storages[name].getId();

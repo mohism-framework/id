@@ -14,7 +14,7 @@ const main = new MainBuffer({
 
 createServer((req, res) => {
   const [, name] = (req.url || '/default').split('/');
-  main.get(name).then((id: bigint) => {
+  main.get(name || 'default').then((id: bigint) => {
     res.end(JSON.stringify({
       id: id.toString(),
     }));
@@ -23,5 +23,5 @@ createServer((req, res) => {
     res.end(JSON.stringify({
       msg: e.message,
     }));
-  })
+  });
 }).listen(process.env.PORT || 3000);

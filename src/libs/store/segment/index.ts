@@ -2,9 +2,6 @@ import DriverFactory from '../../driver/factory';
 import { DriverType, IdRange, IDriver, IStore } from '../../driver/type';
 import { ISementOption } from '../type';
 import { Strategy } from '../../buffer/type';
-import { Logger } from '@mohism/utils';
-
-const logger = Logger();
 
 export default class Segment implements IStore {
   private name: string;
@@ -14,7 +11,7 @@ export default class Segment implements IStore {
   private next: IdRange = [0n, 0n];
   private driver: IDriver;
 
-  constructor({ name, driver = DriverType.memory }: ISementOption) {
+  constructor({ name = 'default', driver = DriverType.memory }: ISementOption) {
     this.name = name;
     this.driver = DriverFactory(driver);
     this.init();
